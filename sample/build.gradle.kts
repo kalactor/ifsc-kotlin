@@ -38,9 +38,17 @@ kotlin {
     }
 }
 
+val usePublishedIfsc = providers.gradleProperty("usePublishedIfsc").orNull == "true"
+val publishedVersion = providers.gradleProperty("VERSION").getOrElse("0.1.0")
+
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":offline"))
+    // Use the local modules by default so the sample reflects current source.
+    // Pass -PusePublishedIfsc=true to verify the published JitPack artifact.
+    if (usePublishedIfsc) {
+        implementation("com.github.kalactor.ifsc-kotlin:offline:$publishedVersion")
+    } else {
+        implementation(project(":offline"))
+    }
 
     implementation(platform("androidx.compose:compose-bom:2026.02.00"))
     implementation("androidx.activity:activity-compose:1.9.1")

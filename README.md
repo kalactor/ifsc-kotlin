@@ -154,6 +154,13 @@ echo "sdk.dir=$HOME/Android/Sdk" > local.properties
 ./gradlew :core:test :offline:testDebugUnitTest :sample:assembleDebug
 ```
 
+By default the sample uses the local `core` and `offline` modules. To verify
+the published JitPack artifact instead:
+
+```bash
+./gradlew :sample:assembleDebug -PusePublishedIfsc=true
+```
+
 The generated data is committed, so a normal build does not need network access
 beyond Gradle dependencies.
 
