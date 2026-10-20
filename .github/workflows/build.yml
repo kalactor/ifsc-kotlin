@@ -1,0 +1,36 @@
+name: build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK components
+        run: sdkmanager --install "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Unit tests
+        run: ./gradlew :core:test :offline:testDebugUnitTest --stacktrace
+
+      - name: Build sample and release AAR
+        run: ./gradlew :sample:assembleDebug :offline:assembleRelease --stacktrace
+
+      - name: Upload AAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: ifsc-kotlin-offline-aar
+          path: offline/build/outputs/aar/*.aar
+          if-no-files-found: error

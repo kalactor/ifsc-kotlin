@@ -1,0 +1,5 @@
+jdk:
+  - openjdk17
+
+install:
+  - ./gradlew :core:publishToMavenLocal :offline:publishToMavenLocal -PVERSION=${VERSION:-0.1.0}

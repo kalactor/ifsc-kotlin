@@ -1,0 +1,37 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# Kotlin
+.kotlin/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Local configuration and signing material
+local.properties
+keystore.properties
+secrets.properties
+*.jks
+*.keystore
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+.vscode/
+.fleet/
+
+# Profiling
+*.hprof
+
+# Packaged artifacts (normally under build/)
+*.apk
+*.aab
+*.aar
