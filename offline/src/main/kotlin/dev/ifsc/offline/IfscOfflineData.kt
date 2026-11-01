@@ -7,7 +7,7 @@ public object IfscOfflineData {
     public const val VERSION: String = "v2.0.62"
 
     /** Date on which this dataset was generated (UTC). */
-    public const val GENERATED_AT: String = "2026-10-20"
+    public const val GENERATED_AT: String = "2026-11-01"
 
     /** Number of IFSC codes in the bundled database. */
     public const val BRANCH_COUNT: Int = 183214
